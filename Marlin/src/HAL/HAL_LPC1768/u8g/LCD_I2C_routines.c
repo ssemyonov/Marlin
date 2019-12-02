@@ -34,6 +34,7 @@
 #include <lpc17xx_libcfg_default.h>
 
 #include "../../../core/millis_t.h"
+#include "../../../core/macros.h"
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,13 +65,10 @@ static void _I2C_Stop (LPC_I2C_TypeDef *I2Cx) {
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-#define U8G_I2C_OPT_FAST 16  // from u8g.h
-
+#define U8G_I2C_OPT_FAST        16  // from u8g.h
 #define USEDI2CDEV_M            1
-
-#define I2CDEV_S_ADDR   0x78  // from SSD1306  //actual address is 0x3C - shift left 1 with LSB set to 0 to indicate write
-
-#define BUFFER_SIZE                     0x1  // only do single byte transfers with LCDs
+#define I2CDEV_S_ADDR           0x3C  // SSD1306 address is 0x3C
+#define BUFFER_SIZE             0x1  // only do single byte transfers with LCDs
 
 #if (USEDI2CDEV_M == 0)
   #define I2CDEV_M LPC_I2C0
@@ -100,7 +98,7 @@ uint8_t u8g_i2c_start(uint8_t sla) {  // send slave address and write bit
         && (I2C_status != I2C_I2STAT_M_TX_DAT_NACK));  //wait for start to be asserted
 
     LPC_I2C1->I2CONCLR = I2C_I2CONCLR_STAC; // clear start state before tansmitting slave address
-    LPC_I2C1->I2DAT = I2CDEV_S_ADDR & I2C_I2DAT_BITMASK; // transmit slave address & write bit
+    LPC_I2C1->I2DAT = (I2C_ADDRESS(sla) & I2C_I2DAT_BITMASK); // transmit slave address & write bit
     LPC_I2C1->I2CONSET = I2C_I2CONSET_AA;
     LPC_I2C1->I2CONCLR = I2C_I2CONCLR_SIC;
     while ((I2C_status != I2C_I2STAT_M_TX_SLAW_ACK)
@@ -148,7 +146,7 @@ void u8g_i2c_init(uint8_t clock_option) {
   // Enable Master I2C operation
   I2C_Cmd(I2CDEV_M, I2C_MASTER_MODE, ENABLE);
 
-  u8g_i2c_start(0); // send slave address and write bit
+  u8g_i2c_start(I2CDEV_S_ADDR); // send slave address and write bit
 }
 
 volatile extern millis_t _millis;
@@ -163,7 +161,7 @@ uint8_t u8g_i2c_send_byte(uint8_t data) {
   return 1;
 }
 
-void u8g_i2c_stop() {
+void u8g_i2c_stop(void) {
 }
 
 

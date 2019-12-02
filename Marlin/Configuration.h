@@ -489,9 +489,9 @@
   //#define DEFAULT_Kd 440
 
   // Duplicator 6
-  #define DEFAULT_Kp 19.45
-  #define DEFAULT_Ki 0.78
-  #define DEFAULT_Kd 121.92
+  #define DEFAULT_Kp 23.31
+  #define DEFAULT_Ki 0.96
+  #define DEFAULT_Kd 141.89
 
 #endif // PIDTEMP
 
@@ -557,8 +557,8 @@
  *
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
-#define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 170
+//#define PREVENT_COLD_EXTRUSION
+//#define EXTRUDE_MINTEMP 170
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
@@ -677,7 +677,7 @@
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 #define E0_DRIVER_TYPE TMC2208
-//#define E1_DRIVER_TYPE A4988
+#define E1_DRIVER_TYPE TMC2208
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
@@ -1667,7 +1667,7 @@
 // This option overrides the default number of encoder pulses needed to
 // produce one step. Should be increased for high-resolution encoders.
 //
-#define ENCODER_PULSES_PER_STEP 2
+#define ENCODER_PULSES_PER_STEP 3
 
 //
 // Use this option to override the number of step signals required to
@@ -1690,7 +1690,7 @@
 //
 //  Set this option if CLOCKWISE causes values to DECREASE
 //
-#define REVERSE_ENCODER_DIRECTION
+//#define REVERSE_ENCODER_DIRECTION
 
 //
 // This option reverses the encoder direction for navigating LCD menus.
@@ -1884,7 +1884,7 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // ReprapWorld Graphical LCD
@@ -2007,7 +2007,8 @@
 //
 // TinyBoy2 128x64 OLED / Encoder Panel
 //
-//#define OLED_PANEL_TINYBOY2
+#define OLED_PANEL_TINYBOY2
+#define LCD_RESET_PIN LCD_PINS_D6 // This controller need a reset pin
 
 //
 // MKS OLED 1.3" 128 × 64 FULL GRAPHICS CONTROLLER
