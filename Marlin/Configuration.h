@@ -123,7 +123,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 250000
+#define BAUDRATE 115200
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -1889,7 +1889,7 @@
 // MakerLab Mini Panel with graphic
 // controller and SD support - http://reprap.org/wiki/Mini_panel
 //
-#define MINIPANEL
+//#define MINIPANEL
 
 //
 // MaKr3d Makr-Panel with graphic controller and SD support.
@@ -1938,7 +1938,7 @@
 //
 //#define FYSETC_MINI_12864_X_X  // Type C/D/E/F. No tunable RGB Backlight by default
 //#define FYSETC_MINI_12864_1_2  // Type C/D/E/F. Simple RGB Backlight (always on)
-//#define FYSETC_MINI_12864_2_0  // Type A/B. Discreet RGB Backlight
+#define FYSETC_MINI_12864_2_0  // Type A/B. Discreet RGB Backlight
 //#define FYSETC_MINI_12864_2_1  // Type A/B. Neopixel RGB Backlight
 
 //
